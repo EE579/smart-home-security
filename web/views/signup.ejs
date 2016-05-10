@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Foscam Home Security</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+  <script>
+    $().ready(function(){
+    $.validator.addMethod("noWhite",function(value,element){
+      return !(value.trim()=='');
+    }, "Value must not be only whitespace.");
+    $("#myForm").validate({
+      rules: {
+        firstname: {
+          required: true,
+          noWhite: true
+        },
+        lastname: {
+          required: true,
+          noWhite: true
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        password: {
+          required: true,
+          minlength: 8
+        },
+        confirm_password: {
+          required: true,
+          minlength: 8,
+          equalTo: "#password"
+        }
+      },
+      messages: {
+        firstname: {
+          required: "Please enter your first name",
+          noWhite: "First name cannot be empty"
+        },
+        lastname: {
+          required: "Please enter your last name",
+          noWhite: "Last name cannot be empty"
+        },
+        email: {
+          required: "Please enter an email address",
+          email: "Please enter a valid email address"
+        },
+        password: {
+          required: "Please enter your password",
+          minlength: "At least 8 characters"
+        },
+        confirm_password: {
+          required: "Please re-enter your password",
+          minlength: "At least 8 characters",
+          equalTo: "Password not match"
+        }
+      }
+    })
+  })
+  </script>
+  <style type="text/css">
+    #myForm label.error{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div class="container col-sm-offset-2 col-sm-8">
+  <h2>Subscribe to Foscam Home Security</h2>
+  <hr/>
+  <form id="myForm" class="form-horizontal" action="https://127.0.0.1:8081/subscribe" method="POST" enctype="multipart/form-data" role="form">
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="firstname">First Name:</label>
+      <div class="col-sm-9">
+        <input type="firstname" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="lastname">Last Name:</label>
+      <div class="col-sm-9">
+        <input type="lastname" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="email">Email:</label>
+      <div class="col-sm-9">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="password">Password:</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="confirm_password">Confirm Password:</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Re-enter your password">
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-info">Subscribe</button>
+      </div>
+    </div>
+    <% if (message.length > 0) { %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+  </form>
+  <hr/>
+  <p>Already have an account? <a href="/">Sign In</a></p>
+</div>
+</body>
+</html>

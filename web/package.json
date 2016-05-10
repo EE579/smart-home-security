@@ -1,0 +1,22 @@
+{
+  "name": "wigwag-foscam",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./server",
+    "photo-train": "python face-recognizer.py"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.15.0",
+    "connect-flash": "0.1.1",
+    "cookie-parser": "1.4.1",
+    "ejs": "2.4.1",
+    "express": "^4.13.0",
+    "express-session": "^1.11.0",
+    "multer": "1.1.0",
+    "mysql": "^2.10.0",
+    "nodemailer": "2.3.2",
+    "opencv": "^2.4.0"
+  }
+}
